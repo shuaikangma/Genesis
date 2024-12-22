@@ -11,8 +11,8 @@ import genesis as gs
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("-e", "--exp_name", type=str, default="go2-walking")
-    parser.add_argument("--ckpt", type=int, default=100)
+    parser.add_argument("-e", "--exp_name", type=str, default="botelf-walking-all")
+    parser.add_argument("--ckpt", type=int, default=1000)
     args = parser.parse_args()
 
     gs.init()
@@ -21,7 +21,7 @@ def main():
     env_cfg, obs_cfg, reward_cfg, command_cfg, train_cfg = pickle.load(open(f"logs/{args.exp_name}/cfgs.pkl", "rb"))
     reward_cfg["reward_scales"] = {}
 
-    env = Go2Env(
+    env = BotElfEnv(
         num_envs=1,
         env_cfg=env_cfg,
         obs_cfg=obs_cfg,
